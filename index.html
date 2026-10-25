@@ -2242,7 +2242,7 @@ function subPopup(force){
     <button class="btn2 full" style="background:none;color:var(--mu)" onclick="closeSheet()">${done?'Закрыть':'Позже'}</button>`);
 }
 function subOpen(){
-  const url='https://t.me/kolhozGo';
+  const url='https://t.me/kolhozantg';
   try{ if(tg&&tg.openTelegramLink) tg.openTelegramLink(url); else window.open(url,'_blank'); }catch(e){ window.open(url,'_blank'); }
   if(user&&!user.subBonus){ subOpenedAt=Date.now(); setTimeout(()=>{ const b=$('sub-claim'); if(b) b.disabled=false; },5000); }
 }
