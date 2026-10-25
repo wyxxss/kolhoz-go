@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <meta name="theme-color" content="#0d0716">
-<title>КолхозGO 2.0 · Хэллоуин</title>
+<title>КолхозGO 3.0 · Хэллоуин</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -545,6 +545,46 @@ details.fold>summary .chip{margin-left:auto}
 .streak small{display:inline;font-size:12px}
 .streak b{font-size:12px;color:var(--ac)}
 .jr small{font-size:11.5px}
+
+/* ===== фиксы 2.0 ===== */
+.float{color:#fff;font-size:22px;text-shadow:-1px -1px 0 #1a0a00,1px -1px 0 #1a0a00,-1px 1px 0 #1a0a00,1px 1px 0 #1a0a00,0 0 10px rgba(255,122,26,.9),0 3px 10px rgba(0,0,0,.9)}
+.tier b{white-space:nowrap}
+.tier small,.tier.on small{display:inline;margin:0 0 0 6px;font-size:11px;color:var(--mu)}
+.tier.on small{color:var(--ac)}
+.jhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.jhead .jt{font-size:18px;line-height:1.25;min-width:0}
+.jhead .jr{display:flex;flex-direction:column;align-items:flex-end;flex-shrink:0}
+.jroute{margin-top:8px;font-size:13.5px;color:var(--mu);line-height:1.4}
+.jmeta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.jm{display:inline-flex;gap:6px;align-items:baseline;font-size:12.5px;color:var(--mu);background:var(--s2);border-radius:99px;padding:6px 12px;cursor:pointer}
+.jm b{font-family:var(--mono);color:var(--ac)}
+.jm b.ok{color:var(--ok)}
+.vault .vtop{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.vault .vrow{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:2px}
+.vault .big{font-size:32px;line-height:1.1;min-width:0}
+.vault .vnote{font-size:12.5px;color:var(--mu);line-height:1.4}
+.upg{flex-direction:column;align-items:stretch;justify-content:flex-start;gap:8px;padding:13px}
+.upg>.uh{display:flex;align-items:center;gap:10px}
+.upg>.uh .ibox{display:flex;width:38px;height:38px;border-radius:12px}
+.upg .ud{font-size:12.5px;color:var(--mu);line-height:1.3;min-height:32px}
+.upg .ue{font:700 13px var(--mono);color:var(--ac);min-height:16px}
+.upg .ub{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:auto}
+.upg .ugo{font-size:13px;font-weight:700}
+.upg.poor .pricechip{color:var(--bad)}
+.upg.poor .ugo{color:var(--mu)}
+.tag{cursor:pointer}
+.qrow{background:var(--s1);border:1px solid var(--line);border-radius:var(--r,20px);padding:13px 14px;display:flex;flex-direction:column;gap:6px}
+.qrow.ready{border-color:rgba(var(--ac-rgb),.6)}
+.qrow.got{opacity:.55}
+.qtop{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.qtt{font-weight:800;font-size:15px;line-height:1.25}
+.qrw{font:700 13px var(--mono);color:var(--ok);white-space:nowrap}
+.qdd{font-size:13px;color:var(--mu);line-height:1.35}
+.qbot{display:flex;align-items:center;gap:10px;margin-top:4px}
+.qbot .btn.sm{min-height:38px;padding:0 16px;font-size:14px}
+.qbar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.qbar i{display:block;height:100%;background:var(--ac);border-radius:99px;transition:width .3s}
+.qn{font:600 12.5px var(--mono);color:var(--mu);min-width:40px;text-align:right}
 </style>
 </head>
 <body>
@@ -595,14 +635,14 @@ details.fold>summary .chip{margin-left:auto}
       <div class="tiers" id="tiers">
         <div class="tier on" id="tier-normal" onclick="setTier('normal')"><b><i class="dotc" style="background:var(--ok)"></i>Обычный</b><small>x1.0</small></div>
         <div class="tier" id="tier-express" onclick="setTier('express')"><b><i class="dotc" style="background:var(--warn)"></i>Срочный</b><small>x1.6</small></div>
-        <div class="tier" id="tier-vip" onclick="setTier('vip')"><b><i class="dotc" style="background:var(--bad)"></i>Груз200</b><small>x2.4</small></div>
+        <div class="tier" id="tier-vip" onclick="setTier('vip')"><b><i class="dotc" style="background:var(--bad)"></i>VIP</b><small>x2.4</small></div>
       </div>
 
       <div class="card" id="act-card">
         <div id="pane-courier">
-          <div class="row" style="align-items:flex-start"><div class="jt" id="job-title">…</div><div class="jr"><b id="job-reward">+0.00</b><small>KOL</small></div></div>
-          <div class="sub" style="margin-top:6px" id="job-route">…</div>
-          <div class="row" style="margin-top:16px"><div class="sub">Без аварий <b class="ok">+25%</b> и рост стрика</div><div class="streak"><small>Стрик</small><b id="job-streak">x1.0</b></div></div>
+          <div class="jhead"><div class="jt" id="job-title">…</div><div class="jr"><b id="job-reward">+0.00</b><small>KOL</small></div></div>
+          <div class="jroute" id="job-route">…</div>
+          <div class="jmeta"><span class="jm" onclick="toast('Без аварий по дороге награда +25%')">Без аварий <b class="ok">+25%</b></span><span class="jm" onclick="toast('Стрик: чистые доставки подряд. Каждая даёт +20% к награде, максимум x2.0. Авария обнуляет.')">Стрик <b id="job-streak">x1.0</b></span></div>
         </div>
 
         <div id="pane-taxi" style="display:none">
@@ -641,16 +681,18 @@ details.fold>summary .chip{margin-left:auto}
       <div style="text-align:center"><span class="chip" id="hold-on" style="display:none">Зажим активен: держи кабана</span></div>
 
       <div class="card vault">
-        <div class="row"><div><div class="sub">Касса колхоза</div><div class="big mono"><span id="vault-amt">0.00</span> <small>/ <span id="vault-cap">25</span></small></div></div><button class="btn sm" onclick="collectVault()">Забрать</button></div>
+        <div class="vtop"><div class="sub">Касса колхоза</div><span class="chip gr" id="vault-eta">…</span></div>
+        <div class="vrow"><div class="big mono"><span id="vault-amt">0.00</span></div><button class="btn sm" onclick="collectVault()">Забрать</button></div>
         <div class="dots" id="vault-dots"><i style="--p:0%"></i></div>
         <div class="row" style="font-size:14px"><span class="sub"><b class="ok mono">+<span id="passive">0.00</span></b> KOL в секунду</span><span id="boost-lbl" class="sub"></span></div>
+        <div class="vnote">Вмещает <span id="vault-cap">25</span> KOL, это доход за 2 часа. Когда касса полная, доход не копится, так что забирай вовремя.</div>
       </div>
 
       <div class="grid2">
-        <div class="upg" onclick="buyUpgrade('tap')"><div class="row" style="justify-content:flex-start;gap:12px"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 9.5V4a1.5 1.5 0 0 1 3 0v6M15 10V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 14.5a1.5 1.5 0 0 1 2.4-1.8L9 15V11z"/></svg></div><div><div class="t">Рукавицы</div><div class="l">Ур. <span id="l-tap">1</span></div></div></div><div class="row"><span class="l">+0.15 к тапу</span><span class="pricechip" id="c-tap">15</span></div></div>
-        <div class="upg" onclick="buyUpgrade('feed')"><div class="row" style="justify-content:flex-start;gap:12px"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M12 21V9M12 9c0-3 2-5 5-5 0 3-2 5-5 5zM12 14c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg></div><div><div class="t">Корм</div><div class="l">Ур. <span id="l-feed">0</span></div></div></div><div class="row"><span class="l">+0.15 в сек</span><span class="pricechip" id="c-feed">45</span></div></div>
-        <div class="upg" onclick="buyUpgrade('tractor')"><div class="row" style="justify-content:flex-start;gap:12px"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><circle cx="7" cy="16" r="3.5"/><circle cx="18" cy="17.5" r="2"/><path d="M10 16h6M4 12.5V8h6l2 4h4.5L19 16M10 8V5h3"/></svg></div><div><div class="t">Бригада</div><div class="l">Ур. <span id="l-tractor">0</span></div></div></div><div class="row"><span class="l">+0.40 в сек</span><span class="pricechip" id="c-tractor">140</span></div></div>
-        <div class="upg" onclick="buyBeer()"><div class="row" style="justify-content:flex-start;gap:12px"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M6 8h10v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8zM16 10h2.5a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5H16M9 12v5M12.5 12v5M6 8c0-1.7 1.3-3 3-3 .8-1.2 3-1.5 4 0 1.6 0 3 1.3 3 3"/></svg></div><div><div class="t">Пиво</div><div class="l">В запасе: <span id="beer-n">0</span></div></div></div><div class="row"><span class="l">Хома, спины</span><span class="pricechip">15</span></div></div>
+        <div class="upg" id="u-tap" onclick="buyUpgrade('tap')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 9.5V4a1.5 1.5 0 0 1 3 0v6M15 10V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 14.5a1.5 1.5 0 0 1 2.4-1.8L9 15V11z"/></svg></div><div class="ut"><div class="t">Рукавицы</div><div class="l">Ур. <span id="l-tap">1</span></div></div></div><div class="ud">Больше KOL за каждый тап по кабану.</div><div class="ue" id="e-tap"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-tap">15</span></div></div>
+        <div class="upg" id="u-feed" onclick="buyUpgrade('feed')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M12 21V9M12 9c0-3 2-5 5-5 0 3-2 5-5 5zM12 14c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg></div><div class="ut"><div class="t">Корм</div><div class="l">Ур. <span id="l-feed">0</span></div></div></div><div class="ud">Кабан сам копит доход в кассу, пока тебя нет.</div><div class="ue" id="e-feed"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-feed">45</span></div></div>
+        <div class="upg" id="u-tractor" onclick="buyUpgrade('tractor')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><circle cx="7" cy="16" r="3.5"/><circle cx="18" cy="17.5" r="2"/><path d="M10 16h6M4 12.5V8h6l2 4h4.5L19 16M10 8V5h3"/></svg></div><div class="ut"><div class="t">Бригада</div><div class="l">Ур. <span id="l-tractor">0</span></div></div></div><div class="ud">Работяги приносят в кассу больше, чем корм.</div><div class="ue" id="e-tractor"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-tractor">140</span></div></div>
+        <div class="upg" id="u-beer" onclick="buyBeer()"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M6 8h10v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8zM16 10h2.5a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5H16M9 12v5M12.5 12v5M6 8c0-1.7 1.3-3 3-3 .8-1.2 3-1.5 4 0 1.6 0 3 1.3 3 3"/></svg></div><div class="ut"><div class="t">Пиво</div><div class="l">В запасе: <span id="beer-n">0</span></div></div></div><div class="ud">+10 спинов в КолхозБет, +1 заход в Говноловлю или оплата такси.</div><div class="ue"></div><div class="ub"><span class="ugo">Купить банку</span><span class="pricechip">15</span></div></div>
       </div>
     </section>
 
@@ -718,7 +760,7 @@ const enc = encodeURIComponent;
 const clamp = (v,a,b) => Math.max(a, Math.min(b, v));
 const r2 = n => +Number(n).toFixed(2);
 const lerp = (a,b,t) => a + (b-a)*t;
-function fmtKol(n){ n = Number(n)||0; return n >= 100000 ? Math.round(n).toLocaleString('ru-RU').replace(/ /g,' ') : n.toFixed(2); }
+function fmtKol(n){ n = Number(n)||0; return n >= 100000 ? Math.round(n).toLocaleString('ru-RU').replace(/ /g,' ') : n.toFixed(2); }
 function todayStr(){ const d=new Date(); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
 function weekId(){ return Math.floor((Date.now()/86400000 + 3)/7); }
 function hexToRgb(h){ const n=parseInt(h.replace('#',''),16); return `${(n>>16)&255}, ${(n>>8)&255}, ${n&255}`; }
@@ -826,9 +868,9 @@ const RANKS = [
   { n:'Сельская нормисня', xp:0,     d:'Ты только приехал в колхоз и ещё путаешь кабана с трактором.' },
   { n:'Опущенный',         xp:250,   d:'Уже знаешь, где «Санта», а где «Хит». Переводы открыты.' },
   { n:'Животное',          xp:900,   d:'Тебя узнают на автовокзале, и это не комплимент.' },
-  { n:'Наш свин',          xp:2200,  d:'Свой в доску. Кабан тебя слушается, трактор — нет.' },
-  { n:'Колхозанище района',xp:5000,  d:'Район платит тебе роялти и немного уважает.' },
-  { n:'Главный по навозу', xp:10000, d:'Вершина пищевой цепи. Всё вокруг — твой навоз.' }
+  { n:'Наш свин',          xp:2800,  d:'Свой в доску. Кабан тебя слушается, трактор — нет.' },
+  { n:'Колхозанище района',xp:8000,  d:'Район платит тебе роялти и немного уважает.' },
+  { n:'Главный по навозу', xp:25000, d:'Вершина пищевой цепи. Всё вокруг — твой навоз.' }
 ];
 const LIM_START=new Date(2026,9,1,0,0,0);
 const LIM_END=new Date(2026,10,8,23,59,59); // конец сезона: 8 ноября включительно (месяцы с нуля: 10 = ноябрь)
@@ -921,7 +963,7 @@ function blankUser(){
     tapLvl:1, feedLvl:0, tractorLvl:0, vaultKol:0, lastTickAt:Date.now(), vaultBoostUntil:0, autoHold:false,
     manure:0, fertLvl:0, runs:5, runsAt:Date.now(), bestScore:0, weekId:0, weekBest:0, totalCaught:0, runsPlayed:0,
     codex:{}, codexClaimed:{},
-    day:'', dailySpins:0, spinMax:30, dailyGift:false, dailyAll:false, dRides:0, dTaps:0, dProg:{}, qClaimed:{},
+    day:'', dailySpins:0, spinMax:30, dailyGift:false, dailyAll:false, dRides:0, dTaps:0, dTapXp:0, dProg:{}, qClaimed:{},
     unlocked:[], theme:'', grad:'', font:'', badge:'', ctag:null, tagPass:false,
     prestige:0, veteran:false, legacyDone:false,
     bank:0, bankAt:0, tx:[], outbox:{}, streak:0, cashback:0, refBy:'', refCount:0, ach:[], subBonus:false
@@ -937,7 +979,7 @@ function normalizeUser(raw){
     else if(Array.isArray(d[k]) && !Array.isArray(u[k])) u[k]=Object.values(u[k]||{});
     else if(d[k] && typeof d[k]==='object' && !Array.isArray(d[k]) && (typeof u[k]!=='object' || !u[k])) u[k]={};
   }
-  if(u.day!==todayStr()){ u.day=todayStr(); u.dailySpins=0; u.spinMax=30; u.dailyGift=false; u.dailyAll=false; u.dRides=0; u.dTaps=0; u.dProg={}; u.qClaimed={}; }
+  if(u.day!==todayStr()){ u.day=todayStr(); u.dailySpins=0; u.spinMax=30; u.dailyGift=false; u.dailyAll=false; u.dRides=0; u.dTaps=0; u.dTapXp=0; u.dProg={}; u.qClaimed={}; }
   if(u.spinMax<30) u.spinMax=30;
   u.theme='';
   const now=Date.now();
@@ -953,14 +995,21 @@ function accentOf(v){ return {col:'#ff7a1a', rgb:'255,122,26'}; }
 function avatarOf(v){ return (v && v.avatar) ? v.avatar : pixelIcon(rankIdxOf((v&&v.xp)||0)); }
 function imgAva(v,cls='avatar',style=''){ const fb=pixelIcon(rankIdxOf((v&&v.xp)||0)); return `<img class="${cls}" style="${style}" src="${esc(avatarOf(v))}" onerror="this.onerror=null;this.src='${fb}'" alt="">`; }
 const DEAD_FONT=['f-under','f-marck','f-mono','f-stal'];
+function badgeTip(b){
+  if(typeof CODEX_SETS!=='undefined' && CODEX_SETS.l && b===CODEX_SETS.l.badge) return b+': награда за полный легендарный набор в Кодексе (вкладка «Ловля»)';
+  const it=STYLE_ITEMS.find(x=>x.type==='badge'&&x.label===b);
+  if(it) return b+': куплен в магазине стиля'+(it.ltd?' (лимитка Хэллоуина)':'');
+  return 'Тег профиля';
+}
+document.addEventListener('click',e=>{ const t=e.target.closest&&e.target.closest('.tag[data-tip]'); if(t){ e.stopPropagation(); toast(t.dataset.tip); } },true);
 function formatNick(v){
   if(!v) return 'Житель';
   const cls=['nick-t', v.grad, DEAD_FONT.includes(v.font)?'':v.font].filter(Boolean).join(' ');
   let extra='';
-  if(v.prestige>0) extra+=`<span class="tag">★${v.prestige}</span>`;
+  if(v.prestige>0) extra+=`<span class="tag" data-tip="Престиж ★${v.prestige}: +${v.prestige*15}% ко всему доходу за прошлые сезоны">★${v.prestige}</span>`;
   const ct=v.ctag;
-  if(ct && ct.t) extra+=`<span class="tag ct" style="background:${esc(/^#[0-9a-f]{3,8}$/i.test(ct.bg)?ct.bg:'#4a2a6a')}">${esc(ct.e||'👑')} ${esc(ct.t)}</span>`;
-  else if(v.badge) extra+=`<span class="tag">${esc(v.badge)}</span>`;
+  if(ct && ct.t) extra+=`<span class="tag ct" data-tip="Личный тег игрока" style="background:${esc(/^#[0-9a-f]{3,8}$/i.test(ct.bg)?ct.bg:'#4a2a6a')}">${esc(ct.e||'👑')} ${esc(ct.t)}</span>`;
+  else if(v.badge) extra+=`<span class="tag" data-tip="${esc(badgeTip(v.badge))}">${esc(v.badge)}</span>`;
   return `<span class="nick-inline"><span class="${cls}">${esc(v.nick)}</span>${extra}</span>`;
 }
 function countProps(key){ return Object.values(propsData).filter(p=>p && p.ownerKey===key).length; }
@@ -1145,7 +1194,7 @@ let batSrc='';
 function batURL(){ return batSrc||(batSrc=pixURL(['bb.....bb','bbb.b.bbb','.bbbbbbb.','..b...b..'],{b:'#8f7ab0'})); }
 function farmLive(){
   const rate=getPassiveRate(), cap=getVaultCap();
-  $('vault-amt').textContent=fmtKol(user.vaultKol); $('vault-cap').textContent=Math.round(cap);
+  $('vault-amt').textContent=fmtKol(user.vaultKol); $('vault-cap').textContent=Math.round(cap).toLocaleString('ru-RU'); { const left=cap-user.vaultKol; $('vault-eta').textContent=rate<=0?'Нет дохода':(left<=0.01?'Касса полная':'Полная через '+fmtDur(left/rate)); } upgAfford();
   $('vault-dots').firstElementChild.style.setProperty('--p',clamp(user.vaultKol/cap*100,0,100)+'%');
   $('passive').textContent=rate.toFixed(2); 
   { const left=(user.vaultBoostUntil||0)-Date.now(); $('boost-lbl').innerHTML=left>0?`<span class="ac">Буст x1.5 · ${Math.floor(left/3600000)?Math.floor(left/3600000)+' ч ':''}${Math.floor(left%3600000/60000)} мин</span>`:''; }
@@ -1155,9 +1204,15 @@ function farmLive(){
   $('btn-hold').style.display=user.autoHold?'none':'inline-flex';
   $('hold-on').style.display=user.autoHold?'inline-flex':'none';
 }
+function fmtDur(sec){ sec=Math.max(0,Math.round(sec)); const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60); return h?`${h} ч ${m} мин`:(m?`${m} мин`:'меньше минуты'); }
+function upgAfford(){ if(!user) return; [['tap',upgPrice('tap')],['feed',upgPrice('feed')],['tractor',upgPrice('tractor')],['beer',15]].forEach(([k,c])=>{ const e=$('u-'+k); if(e) e.classList.toggle('poor',user.kol<c); }); }
 function farmCosts(){
   $('l-tap').textContent=user.tapLvl; $('l-feed').textContent=user.feedLvl; $('l-tractor').textContent=user.tractorLvl;
   $('c-tap').textContent=upgPrice('tap'); $('c-feed').textContent=upgPrice('feed'); $('c-tractor').textContent=upgPrice('tractor');
+  { const bm=bonusMult(), now=getTapPower(), nxt=r2((0.20+(user.tapLvl||1)*0.15+eliteTap())*bm);
+    $('e-tap').textContent=`Тап ${now.toFixed(2)} → ${nxt.toFixed(2)}`;
+    $('e-feed').textContent=`+${r2(0.15*bm).toFixed(2)} KOL/с`; $('e-tractor').textContent=`+${r2(0.40*bm).toFixed(2)} KOL/с`; }
+  upgAfford();
 }
 let uiQueued=false;
 function refreshUI(){
@@ -1311,6 +1366,7 @@ function setMode(m){
   syncTaxi(); updateGoBtn(); drawMap();
 }
 function setTier(t){ if(isRiding||dgActive) return; hap('light'); courierTier=t; ['normal','express','vip'].forEach(x=>$('tier-'+x).classList.toggle('on',x===t)); rollJob(); }
+const rideXpMult=()=>user.dRides>50?.25:(user.dRides>25?.5:1);
 function streakMult(){ return r2(1+Math.min(1,(user.streak||0)*.2)); }
 function rushMult(){ return eventIs('rush')?1.4:1; }
 function rollJob(){
@@ -1326,7 +1382,7 @@ function rollJob(){
   const reward=r2(base*tm*streakMult()*prestigeMult()*rushMult());
   const list=cargo[courierTier]; const title=list[Math.floor(Math.random()*list.length)];
   currentJob={fromLoc:from,toLoc:to,dist,reward,title,tier:courierTier};
-  const tn=courierTier==='vip'?'Груз200':(courierTier==='express'?'Срочный':'Обычный');
+  const tn=courierTier==='vip'?'VIP':(courierTier==='express'?'Срочный':'Обычный');
   $('job-streak').textContent='x'+streakMult().toFixed(1);
   $('job-title').textContent=title; $('job-route').textContent=`${from.name} → ${to.name} · ${dist} м`;
   $('job-reward').textContent=`+${reward.toFixed(2)}`;
@@ -1363,7 +1419,7 @@ function openCourierGame(){
   if(dgActive||isRiding||!currentJob) return;
   dgActive=true; isRiding=true; lockModal=true; closingConfirm(true); hap('medium');
   const tier=currentJob.tier, dur=tier==='vip'?12500:(tier==='express'?10000:8000);
-  const hint=tier==='vip'?'Груз200: плотный поток, преграды с ⇄ меняют полосу на ходу!':(tier==='express'?'Срочный: преград больше, держи реакцию!':`${currentJob.fromLoc.name} → ${currentJob.toLoc.name}`);
+  const hint=tier==='vip'?'VIP: плотный поток, преграды с ⇄ меняют полосу на ходу!':(tier==='express'?'Срочный: преград больше, держи реакцию!':`${currentJob.fromLoc.name} → ${currentJob.toLoc.name}`);
   openSheet(`<div class="row"><div class="h2">Курьерский заезд</div><span class="chip" id="dg-timer">Приготовься</span></div>
     <div class="sub">${esc(hint)}</div>
     <div class="prog" style="margin:0"><i id="dg-bar"></i></div><canvas id="dg-canvas" class="game" style="aspect-ratio:330/240"></canvas>
@@ -1444,7 +1500,7 @@ async function endCourier(clean){
     user.streak=(user.streak||0)+1; pay=r2(reward*1.25); xp=tier==='vip'?95:(tier==='express'?65:46);
     if((tier==='express'||tier==='vip')&&Math.random()<.35){ user.beer++; txt='\n🍺 Заказчик угостил банкой пива!'; }
   } else { user.streak=0; pay=r2(reward*.4); xp=22; }
-  user.kol=r2(user.kol+pay); gainXp(xp); addTx('in',clean?`Доставка: ${title}`:`Помятая доставка в ${toLoc.name}`,pay);
+  xp=Math.max(1,Math.round(xp*rideXpMult())); if(rideXpMult()<1) txt+='\nМного рейсов за день: XP снижен.'; user.kol=r2(user.kol+pay); gainXp(xp); addTx('in',clean?`Доставка: ${title}`:`Помятая доставка в ${toLoc.name}`,pay);
   payRoyalty(toLoc.id,pay);
   rollJob(); syncTaxi(); markDirty(); refreshUI(); saveNow(); hap(clean?'ok':'err'); focusLoc(toLoc,1.1);
   if(clean) popup(`Чистая доставка! Стрик ${user.streak}`,`«${title}» доставлен в ${toLoc.name}.\n+${pay.toFixed(2)} KOL и +${xp} XP.${txt}`);
@@ -1501,7 +1557,7 @@ function runMove(from,to,emoji,dur,done){
   },80);
 }
 async function arrive(to,xp,base,note='',tid='slavik'){
-  const gain=Math.round(xp*(eventIs('rush')?1.5:1)*1);
+  const gain=Math.max(1,Math.round(xp*(eventIs('rush')?1.5:1)*rideXpMult()));
   const prevLoc=user.curLoc; gainXp(gain); user.rides++; user.dRides++; user.curLoc=to.id; $('sel-to').value=prevLoc;
   questProgress('any_ride',1); questProgress('tariff_'+tid,1); questProgress('visit_'+to.id,1);
   let find='';
@@ -1512,6 +1568,7 @@ async function arrive(to,xp,base,note='',tid='slavik'){
 }
 
 /* ================= ФЕРМА ================= */
+const TAP_XP_CAP=60; /* XP за тапы в день (1 XP за 5 тапов) */
 const MAX_ENERGY=200; let energy=200, tapTimes=[], tapPenalty=0, holdTimer=null;
 function upgPrice(type){
   if(type==='tap') return Math.round(15*Math.pow(1.65,(user.tapLvl||1)-1));
@@ -1546,7 +1603,7 @@ function boarTap(e){
   }
   if(energy<1){ $('tap-warn').textContent='Кабан устал, подожди пару секунд.'; return; }
   energy--; const g=getTapPower();
-  user.kol=r2(user.kol+g); user.clicks++; user.dTaps++; gainXp(1); questProgress('tap_boar',1); markDirty(); hap('light');
+  user.kol=r2(user.kol+g); user.clicks++; user.dTaps++; if(user.clicks%5===0 && (user.dTapXp||0)<TAP_XP_CAP){ user.dTapXp=(user.dTapXp||0)+1; gainXp(1); } questProgress('tap_boar',1); markDirty(); hap('light');
   const f=document.createElement('div'); f.className='float'; f.textContent='+'+g.toFixed(2);
   f.style.left=((e.clientX||innerWidth/2)-24+(Math.random()*24-12))+'px'; f.style.top=((e.clientY||innerHeight/2)-24)+'px';
   document.body.appendChild(f); setTimeout(()=>f.remove(),650);
@@ -1577,7 +1634,7 @@ const QPOOL=buildPool();
 function dailyThree(){ const rnd=seeded(todayStr()+'q'); const used=new Set(), out=[]; while(out.length<3){ const i=Math.floor(rnd()*QPOOL.length); if(!used.has(i)){ used.add(i); out.push(QPOOL[i]); } } return out; }
 function questProgress(k,n=1){ if(!user) return; user.dProg[k]=(user.dProg[k]||0)+n; markDirty(); }
 function qVal(q){ const p=user.dProg[q.m]||0; if(q.m==='any_ride') return Math.max(p,user.dRides); if(q.m==='tap_boar') return Math.max(p,user.dTaps); return p; }
-const qReward=q=>Math.round(q.b*(1+getRankIdx()*.65)+getPassiveRate()*90);
+const qReward=q=>Math.round(q.b*(1+getRankIdx()*.4)+Math.min(150,getPassiveRate()*25));
 function questBannerUI(){
   const q3=dailyThree(); let done=0, claim=!user.dailyGift;
   q3.forEach(q=>{ if(Math.min(q.n,qVal(q))>=q.n){ done++; if(!user.qClaimed[q.id]) claim=true; } });
@@ -1587,18 +1644,19 @@ function questBannerUI(){
   
 }
 function openQuests(){
-  hap('light'); const q3=dailyThree(); let all=true;
+  hap('light'); const q3=dailyThree(); let all=true, doneN=0;
   const rows=q3.map(q=>{
-    const cur=Math.min(q.n,qVal(q)), done=cur>=q.n; if(!done) all=false;
-    const cl=!!user.qClaimed[q.id], rw=qReward(q);
-    return `<div class="item"><div><div style="font-weight:800;font-size:15px">${esc(q.t)} <span class="mono mu">${cur}/${q.n}</span></div><div class="sub">${esc(q.d)} · <b class="ok">+${rw} KOL</b></div></div>
-      <button class="btn2" ${(!done||cl)?'disabled':''} onclick="claimQuest('${q.id}',${rw})">${cl?'Взято':'+'+rw}</button></div>`;
+    const cur=Math.min(q.n,qVal(q)), done=cur>=q.n; if(!done) all=false; else doneN++;
+    const cl=!!user.qClaimed[q.id], rw=qReward(q), pct=Math.round(cur/q.n*100);
+    const act=cl?'<span class="chip gr">Взято</span>':(done?`<button class="btn sm" onclick="claimQuest('${q.id}',${rw})">Забрать</button>`:'');
+    return `<div class="qrow${done&&!cl?' ready':''}${cl?' got':''}"><div class="qtop"><div class="qtt">${esc(q.t)}</div><span class="qrw">+${rw} KOL</span></div><div class="qdd">${esc(q.d)}</div><div class="qbot"><div class="qbar"><i style="width:${pct}%"></i></div><span class="qn">${cur}/${q.n}</span>${act}</div></div>`;
   }).join('');
   const gift=35+getRankIdx()*25;
-  openSheet(`<div class="row"><div class="h2">Задания дня</div><span class="chip gr">${todayStr()}</span></div>
-    <div class="item hot"><div><div style="font-weight:800;font-size:15px">Ежедневный паёк</div><div class="sub">+${gift} KOL и 1 банка пива</div></div><button class="btn2" ${user.dailyGift?'disabled':''} onclick="claimGift(${gift})">${user.dailyGift?'Взято':'Забрать'}</button></div>
+  openSheet(`<div class="row"><div class="h2">Задания дня</div><span class="chip gr">${doneN}/3</span></div>
+    <div class="sub">Новые задания появятся завтра. Чем выше ранг, тем больше награда.</div>
+    <div class="qrow${user.dailyGift?' got':' ready'}"><div class="qtop"><div class="qtt">Ежедневный паёк</div><span class="qrw">+${gift} KOL</span></div><div class="qdd">И ещё 1 банка пива. Просто заходи каждый день.</div><div class="qbot"><span style="flex:1"></span>${user.dailyGift?'<span class="chip gr">Взято</span>':`<button class="btn sm" onclick="claimGift(${gift})">Забрать</button>`}</div></div>
     ${rows}
-    <div class="item hot"><div><div style="font-weight:800;font-size:15px">Супер-бонус за 3/3</div><div class="sub">Касса x1.5 на 2 ч, 150 XP, 2 пива</div></div><button class="btn sm" ${(!all||user.dailyAll)?'disabled':''} onclick="claimAll()">${user.dailyAll?'Активно':'Взять'}</button></div>
+    <div class="qrow${user.dailyAll?' got':(all?' ready':'')}"><div class="qtop"><div class="qtt">Бонус за все 3 задания</div></div><div class="qdd">Касса приносит ×1.5 в течение 2 часов, плюс 150 XP и 2 банки пива.</div><div class="qbot"><div class="qbar"><i style="width:${Math.round(doneN/3*100)}%"></i></div><span class="qn">${doneN}/3</span>${user.dailyAll?'<span class="chip gr">Получено</span>':(all?'<button class="btn sm" onclick="claimAll()">Забрать</button>':'')}</div></div>
     <button class="btn2 full" onclick="closeSheet()">Закрыть</button>`);
 }
 function claimGift(a){ if(user.dailyGift) return; user.dailyGift=true; user.kol=r2(user.kol+a); user.beer++; addTx('in','Ежедневный паёк',a); hap('heavy'); markDirty(); saveNow(); refreshUI(); openQuests(); }
@@ -2242,7 +2300,7 @@ function subPopup(force){
     <button class="btn2 full" style="background:none;color:var(--mu)" onclick="closeSheet()">${done?'Закрыть':'Позже'}</button>`);
 }
 function subOpen(){
-  const url='https://t.me/kolhozantg';
+  const url='https://t.me/kolhozGo';
   try{ if(tg&&tg.openTelegramLink) tg.openTelegramLink(url); else window.open(url,'_blank'); }catch(e){ window.open(url,'_blank'); }
   if(user&&!user.subBonus){ subOpenedAt=Date.now(); setTimeout(()=>{ const b=$('sub-claim'); if(b) b.disabled=false; },5000); }
 }
