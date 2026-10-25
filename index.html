@@ -585,6 +585,12 @@ details.fold>summary .chip{margin-left:auto}
 .qbar{flex:1;height:8px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
 .qbar i{display:block;height:100%;background:var(--ac);border-radius:99px;transition:width .3s}
 .qn{font:600 12.5px var(--mono);color:var(--mu);min-width:40px;text-align:right}
+.upg.wide{grid-column:1/-1}
+.upg.wide .ud{min-height:0}
+.pips{display:flex;gap:6px;margin-top:4px}
+.pips i{flex:1;text-align:center;font:600 12px var(--mono);font-style:normal;padding:7px 0;border-radius:10px;background:var(--s2);color:var(--mu)}
+.pips i.on{background:rgba(var(--ac-rgb),.22);color:var(--ac)}
+.pips i.cur{outline:1px solid var(--ac)}
 </style>
 </head>
 <body>
@@ -685,14 +691,15 @@ details.fold>summary .chip{margin-left:auto}
         <div class="vrow"><div class="big mono"><span id="vault-amt">0.00</span></div><button class="btn sm" onclick="collectVault()">Забрать</button></div>
         <div class="dots" id="vault-dots"><i style="--p:0%"></i></div>
         <div class="row" style="font-size:14px"><span class="sub"><b class="ok mono">+<span id="passive">0.00</span></b> KOL в секунду</span><span id="boost-lbl" class="sub"></span></div>
-        <div class="vnote">Вмещает <span id="vault-cap">25</span> KOL, это доход за 2 часа. Когда касса полная, доход не копится, так что забирай вовремя.</div>
+        <div class="vnote">Вмещает <span id="vault-cap">25</span> KOL, это доход за <span id="vault-hrs">2</span> ч. Когда касса полная, доход не копится, так что забирай вовремя.</div>
       </div>
 
       <div class="grid2">
         <div class="upg" id="u-tap" onclick="buyUpgrade('tap')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M9 11V5a1.5 1.5 0 0 1 3 0v5M12 9.5V4a1.5 1.5 0 0 1 3 0v6M15 10V6.5a1.5 1.5 0 0 1 3 0V14a6 6 0 0 1-6 6h-1a6 6 0 0 1-5-2.7L4 14.5a1.5 1.5 0 0 1 2.4-1.8L9 15V11z"/></svg></div><div class="ut"><div class="t">Рукавицы</div><div class="l">Ур. <span id="l-tap">1</span></div></div></div><div class="ud">Больше KOL за каждый тап по кабану.</div><div class="ue" id="e-tap"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-tap">15</span></div></div>
         <div class="upg" id="u-feed" onclick="buyUpgrade('feed')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M12 21V9M12 9c0-3 2-5 5-5 0 3-2 5-5 5zM12 14c0-3-2-5-5-5 0 3 2 5 5 5z"/></svg></div><div class="ut"><div class="t">Корм</div><div class="l">Ур. <span id="l-feed">0</span></div></div></div><div class="ud">Кабан сам копит доход в кассу, пока тебя нет.</div><div class="ue" id="e-feed"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-feed">45</span></div></div>
         <div class="upg" id="u-tractor" onclick="buyUpgrade('tractor')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><circle cx="7" cy="16" r="3.5"/><circle cx="18" cy="17.5" r="2"/><path d="M10 16h6M4 12.5V8h6l2 4h4.5L19 16M10 8V5h3"/></svg></div><div class="ut"><div class="t">Бригада</div><div class="l">Ур. <span id="l-tractor">0</span></div></div></div><div class="ud">Работяги приносят в кассу больше, чем корм.</div><div class="ue" id="e-tractor"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-tractor">140</span></div></div>
-        <div class="upg" id="u-beer" onclick="buyBeer()"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M6 8h10v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8zM16 10h2.5a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5H16M9 12v5M12.5 12v5M6 8c0-1.7 1.3-3 3-3 .8-1.2 3-1.5 4 0 1.6 0 3 1.3 3 3"/></svg></div><div class="ut"><div class="t">Пиво</div><div class="l">В запасе: <span id="beer-n">0</span></div></div></div><div class="ud">+10 спинов в КолхозБет, +1 заход в Говноловлю или оплата такси.</div><div class="ue"></div><div class="ub"><span class="ugo">Купить банку</span><span class="pricechip">15</span></div></div>
+        <div class="upg" id="u-barn" onclick="buyUpgrade('barn')"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M3 10l9-6 9 6v10H3V10zM9 20v-6h6v6M3 10h18"/></svg></div><div class="ut"><div class="t">Амбар</div><div class="l">Ур. <span id="l-barn">0</span></div></div></div><div class="ud">Касса копит доход дольше, можно заходить реже.</div><div class="ue" id="e-barn"></div><div class="ub"><span class="ugo">Улучшить</span><span class="pricechip" id="c-barn">120</span></div></div>
+        <div class="upg wide" id="u-beer" onclick="buyBeer()"><div class="uh"><div class="ibox"><svg class="i" viewBox="0 0 24 24"><path d="M6 8h10v11a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V8zM16 10h2.5a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5H16M9 12v5M12.5 12v5M6 8c0-1.7 1.3-3 3-3 .8-1.2 3-1.5 4 0 1.6 0 3 1.3 3 3"/></svg></div><div class="ut"><div class="t">Пиво</div><div class="l">В запасе: <span id="beer-n">0</span></div></div></div><div class="ud">+10 спинов в КолхозБет, +1 заход в Говноловлю или оплата такси.</div><div class="ue"></div><div class="ub"><span class="ugo">Купить банку</span><span class="pricechip">15</span></div></div>
       </div>
     </section>
 
@@ -963,7 +970,7 @@ function blankUser(){
     tapLvl:1, feedLvl:0, tractorLvl:0, vaultKol:0, lastTickAt:Date.now(), vaultBoostUntil:0, autoHold:false,
     manure:0, fertLvl:0, runs:5, runsAt:Date.now(), bestScore:0, weekId:0, weekBest:0, totalCaught:0, runsPlayed:0,
     codex:{}, codexClaimed:{},
-    day:'', dailySpins:0, spinMax:30, dailyGift:false, dailyAll:false, dRides:0, dTaps:0, dTapXp:0, dProg:{}, qClaimed:{},
+    day:'', dailySpins:0, spinMax:30, dailyGift:false, dailyAll:false, dRides:0, dTaps:0, dTapXp:0, dCasXp:0, loginStreak:0, lastGift:'', guideSeen:false, barnLvl:0, dProg:{}, qClaimed:{},
     unlocked:[], theme:'', grad:'', font:'', badge:'', ctag:null, tagPass:false,
     prestige:0, veteran:false, legacyDone:false,
     bank:0, bankAt:0, tx:[], outbox:{}, streak:0, cashback:0, refBy:'', refCount:0, ach:[], subBonus:false
@@ -979,11 +986,11 @@ function normalizeUser(raw){
     else if(Array.isArray(d[k]) && !Array.isArray(u[k])) u[k]=Object.values(u[k]||{});
     else if(d[k] && typeof d[k]==='object' && !Array.isArray(d[k]) && (typeof u[k]!=='object' || !u[k])) u[k]={};
   }
-  if(u.day!==todayStr()){ u.day=todayStr(); u.dailySpins=0; u.spinMax=30; u.dailyGift=false; u.dailyAll=false; u.dRides=0; u.dTaps=0; u.dTapXp=0; u.dProg={}; u.qClaimed={}; }
+  if(u.day!==todayStr()){ u.day=todayStr(); u.dailySpins=0; u.spinMax=30; u.dailyGift=false; u.dailyAll=false; u.dRides=0; u.dTaps=0; u.dTapXp=0; u.dCasXp=0; u.dProg={}; u.qClaimed={}; }
   if(u.spinMax<30) u.spinMax=30;
   u.theme='';
   const now=Date.now();
-  const el=Math.max(0,Math.min(7200,Math.floor((now-(u.lastTickAt||now))/1000)));
+  const el=Math.max(0,Math.min(vaultHrs(u)*3600,Math.floor((now-(u.lastTickAt||now))/1000)));
   if(el>2){ u.vaultKol=Math.min(getVaultCap(u), r2((u.vaultKol||0)+getPassiveRate(u)*el)); }
   u.lastTickAt=now;
   syncRuns(u);
@@ -1030,7 +1037,8 @@ function getPassiveRate(u=user){
   if((u.vaultBoostUntil||0)>Date.now()) t*=1.5;
   return r2(t);
 }
-const getVaultCap = (u=user)=>Math.max(25, r2(getPassiveRate(u)*7200));
+const vaultHrs=(u=user)=>2+Math.min(6,u.barnLvl||0);
+const getVaultCap = (u=user)=>Math.max(25, r2(getPassiveRate(u)*3600*vaultHrs(u)));
 function addTx(type,title,amount){
   user.tx.unshift({ id:'x'+Date.now().toString(36)+Math.random().toString(36).slice(2,5), type, title, amount:r2(amount), time:new Date().toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit'}) });
   if(user.tx.length>30) user.tx.length=30;
@@ -1124,7 +1132,7 @@ function nextRunMs(u=user){ return u.runs>=CG.MAX?0:Math.max(0,CG.REGEN-(Date.no
 /* ---------- Сезон и престиж ---------- */
 function resetEconomy(u){
   const keep={ key:u.key,nick:u.nick,avatar:u.avatar,ver:3,unlocked:u.unlocked,theme:u.theme,grad:u.grad,font:u.font,badge:u.badge,ctag:u.ctag,tagPass:u.tagPass,
-    prestige:u.prestige,veteran:u.veteran,legacyDone:u.legacyDone,codex:u.codex,codexClaimed:u.codexClaimed,refBy:u.refBy,refCount:u.refCount,ach:u.ach,subBonus:u.subBonus,
+    prestige:u.prestige,veteran:u.veteran,guideSeen:u.guideSeen,loginStreak:u.loginStreak,lastGift:u.lastGift,legacyDone:u.legacyDone,codex:u.codex,codexClaimed:u.codexClaimed,refBy:u.refBy,refCount:u.refCount,ach:u.ach,subBonus:u.subBonus,
     bestScore:u.bestScore,totalCaught:u.totalCaught,runsPlayed:u.runsPlayed,gaiEscapes:u.gaiEscapes };
   const n=Object.assign(blankUser(),keep);
   n.kol=100+50*(keep.prestige||0); n.season=u.season;
@@ -1194,7 +1202,7 @@ let batSrc='';
 function batURL(){ return batSrc||(batSrc=pixURL(['bb.....bb','bbb.b.bbb','.bbbbbbb.','..b...b..'],{b:'#8f7ab0'})); }
 function farmLive(){
   const rate=getPassiveRate(), cap=getVaultCap();
-  $('vault-amt').textContent=fmtKol(user.vaultKol); $('vault-cap').textContent=Math.round(cap).toLocaleString('ru-RU'); { const left=cap-user.vaultKol; $('vault-eta').textContent=rate<=0?'Нет дохода':(left<=0.01?'Касса полная':'Полная через '+fmtDur(left/rate)); } upgAfford();
+  $('vault-amt').textContent=fmtKol(user.vaultKol); $('vault-cap').textContent=Math.round(cap).toLocaleString('ru-RU'); $('vault-hrs').textContent=vaultHrs(); { const left=cap-user.vaultKol; $('vault-eta').textContent=rate<=0?'Нет дохода':(left<=0.01?'Касса полная':'Полная через '+fmtDur(left/rate)); } upgAfford();
   $('vault-dots').firstElementChild.style.setProperty('--p',clamp(user.vaultKol/cap*100,0,100)+'%');
   $('passive').textContent=rate.toFixed(2); 
   { const left=(user.vaultBoostUntil||0)-Date.now(); $('boost-lbl').innerHTML=left>0?`<span class="ac">Буст x1.5 · ${Math.floor(left/3600000)?Math.floor(left/3600000)+' ч ':''}${Math.floor(left%3600000/60000)} мин</span>`:''; }
@@ -1205,13 +1213,14 @@ function farmLive(){
   $('hold-on').style.display=user.autoHold?'inline-flex':'none';
 }
 function fmtDur(sec){ sec=Math.max(0,Math.round(sec)); const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60); return h?`${h} ч ${m} мин`:(m?`${m} мин`:'меньше минуты'); }
-function upgAfford(){ if(!user) return; [['tap',upgPrice('tap')],['feed',upgPrice('feed')],['tractor',upgPrice('tractor')],['beer',15]].forEach(([k,c])=>{ const e=$('u-'+k); if(e) e.classList.toggle('poor',user.kol<c); }); }
+function upgAfford(){ if(!user) return; [['tap',upgPrice('tap')],['feed',upgPrice('feed')],['tractor',upgPrice('tractor')],['barn',(user.barnLvl||0)>=6?0:upgPrice('barn')],['beer',15]].forEach(([k,c])=>{ const e=$('u-'+k); if(e) e.classList.toggle('poor',user.kol<c); }); }
 function farmCosts(){
   $('l-tap').textContent=user.tapLvl; $('l-feed').textContent=user.feedLvl; $('l-tractor').textContent=user.tractorLvl;
   $('c-tap').textContent=upgPrice('tap'); $('c-feed').textContent=upgPrice('feed'); $('c-tractor').textContent=upgPrice('tractor');
   { const bm=bonusMult(), now=getTapPower(), nxt=r2((0.20+(user.tapLvl||1)*0.15+eliteTap())*bm);
     $('e-tap').textContent=`Тап ${now.toFixed(2)} → ${nxt.toFixed(2)}`;
     $('e-feed').textContent=`+${r2(0.15*bm).toFixed(2)} KOL/с`; $('e-tractor').textContent=`+${r2(0.40*bm).toFixed(2)} KOL/с`; }
+  { const bl=user.barnLvl||0; $('l-barn').textContent=bl; $('c-barn').textContent=bl>=6?'МАКС':upgPrice('barn'); $('e-barn').textContent=bl>=6?'Касса копит 8 ч':`Касса: ${vaultHrs()} ч → ${vaultHrs()+1} ч`; }
   upgAfford();
 }
 let uiQueued=false;
@@ -1339,12 +1348,14 @@ window.addEventListener('pointerup',e=>{
 });
 window.addEventListener('resize',resizeMap);
 
-function propPrice(loc){ const p=propsData[loc.id]; return p&&p.price?Math.round(p.price*1.25):loc.basePrice; }
+const PROTECT_MS=30*60000;
+function propPrice(loc){ const p=propsData[loc.id]; return p&&p.price?Math.min(Math.round(p.price*1.25),loc.basePrice*4):loc.basePrice; }
 function markerSheet(loc){
   if(!user) return; hap('light');
-  const own=propsData[loc.id], price=propPrice(loc), mine=own&&own.ownerKey===user.key, here=user.curLoc===loc.id;
+  const own=propsData[loc.id], price=propPrice(loc), mine=own&&own.ownerKey===user.key, here=user.curLoc===loc.id, guardMs=(own&&!mine&&own.ts)?Math.max(0,PROTECT_MS-(Date.now()-own.ts)):0;
   let act;
   if(mine) act=`<button class="btn2 full" disabled>Это твоя точка</button>`;
+  else if(guardMs>0) act=`<button class="btn2 full" disabled>Под охраной ещё ${Math.ceil(guardMs/60000)} мин</button>`;
   else if(here) act=`<button class="btn" onclick="closeSheet();buyProp('${loc.id}')">${own?'Перекупить':'Купить'} за ${price} KOL</button>`;
   else act=`<button class="btn" onclick="goTaxi('${loc.id}')">Поехать сюда · точка ${price} KOL</button>`;
   openSheet(`<div class="row" style="justify-content:flex-start;gap:12px">${own?imgAva({avatar:own.ownerAva,xp:0},'avatar','width:46px;height:46px'):''}
@@ -1573,12 +1584,14 @@ const MAX_ENERGY=200; let energy=200, tapTimes=[], tapPenalty=0, holdTimer=null;
 function upgPrice(type){
   if(type==='tap') return Math.round(15*Math.pow(1.65,(user.tapLvl||1)-1));
   if(type==='feed') return Math.round(45*Math.pow(1.7,user.feedLvl||0));
+  if(type==='barn') return Math.round(120*Math.pow(2.2,user.barnLvl||0));
   return Math.round(140*Math.pow(1.75,user.tractorLvl||0));
 }
 function buyUpgrade(type){
+  if(type==='barn'&&(user.barnLvl||0)>=6){ toast('Амбар уже максимальный'); return; }
   const c=upgPrice(type); if(user.kol<c){ toast(`Нужно ${c} KOL`); return; }
   user.kol=r2(user.kol-c);
-  if(type==='tap') user.tapLvl++; else if(type==='feed') user.feedLvl++; else user.tractorLvl++;
+  if(type==='tap') user.tapLvl++; else if(type==='feed') user.feedLvl++; else if(type==='barn') user.barnLvl=(user.barnLvl||0)+1; else user.tractorLvl++;
   addTx('out','Прокачка фермы',c); questProgress('buy_upgrade',1); hap('medium'); markDirty(); saveNow(); refreshUI();
 }
 function buyBeer(){ if(user.kol<15){ toast('Банка стоит 15 KOL'); return; } user.kol=r2(user.kol-15); user.beer++; addTx('out','Пиво из «Санты»',15); hap('medium'); markDirty(); saveNow(); refreshUI(); }
@@ -1610,7 +1623,7 @@ function boarTap(e){
   $('hdr-kol').textContent=fmtKol(user.kol); $('en-lbl').textContent=Math.floor(energy);
 }
 function collectVault(){
-  if((user.vaultKol||0)<.1){ popup('Касса пуста','Пассивный доход копится до 2 часов от корма, бригады и твоих точек.'); return; }
+  if((user.vaultKol||0)<.1){ popup('Касса пуста','Пассивный доход копится до '+vaultHrs()+' ч от корма, бригады и твоих точек. Время можно увеличить улучшением «Амбар».'); return; }
   const a=r2(user.vaultKol); user.kol=r2(user.kol+a); user.vaultKol=0; addTx('in','Выручка из кассы',a);
   questProgress('collect_vault',1); hap('heavy'); markDirty(); saveNow(); refreshUI(); toast('+'+a.toFixed(2)+' KOL в кошелёк');
 }
@@ -1651,15 +1664,21 @@ function openQuests(){
     const act=cl?'<span class="chip gr">Взято</span>':(done?`<button class="btn sm" onclick="claimQuest('${q.id}',${rw})">Забрать</button>`:'');
     return `<div class="qrow${done&&!cl?' ready':''}${cl?' got':''}"><div class="qtop"><div class="qtt">${esc(q.t)}</div><span class="qrw">+${rw} KOL</span></div><div class="qdd">${esc(q.d)}</div><div class="qbot"><div class="qbar"><i style="width:${pct}%"></i></div><span class="qn">${cur}/${q.n}</span>${act}</div></div>`;
   }).join('');
-  const gift=35+getRankIdx()*25;
+  const g=giftInfo();
   openSheet(`<div class="row"><div class="h2">Задания дня</div><span class="chip gr">${doneN}/3</span></div>
     <div class="sub">Новые задания появятся завтра. Чем выше ранг, тем больше награда.</div>
-    <div class="qrow${user.dailyGift?' got':' ready'}"><div class="qtop"><div class="qtt">Ежедневный паёк</div><span class="qrw">+${gift} KOL</span></div><div class="qdd">И ещё 1 банка пива. Просто заходи каждый день.</div><div class="qbot"><span style="flex:1"></span>${user.dailyGift?'<span class="chip gr">Взято</span>':`<button class="btn sm" onclick="claimGift(${gift})">Забрать</button>`}</div></div>
+    <div class="qrow${user.dailyGift?' got':' ready'}"><div class="qtop"><div class="qtt">Ежедневный паёк · день ${g.d} из 7</div><span class="qrw">+${g.kol} KOL</span></div><div class="qdd">И ещё ${g.beer} 🍺${g.boost?', плюс касса ×1.5 на час':''}. Заходи каждый день: награда растёт, на 7-й день она тройная. Пропустишь день, и серия начнётся заново.</div><div class="pips">${[1,2,3,4,5,6,7].map(i=>`<i class="${(i<g.d||(i===g.d&&user.dailyGift))?'on':''}${i===g.d?' cur':''}">${i===7?'🎁':i}</i>`).join('')}</div><div class="qbot"><span style="flex:1"></span>${user.dailyGift?'<span class="chip gr">Взято</span>':'<button class="btn sm" onclick="claimGift()">Забрать</button>'}</div></div>
     ${rows}
     <div class="qrow${user.dailyAll?' got':(all?' ready':'')}"><div class="qtop"><div class="qtt">Бонус за все 3 задания</div></div><div class="qdd">Касса приносит ×1.5 в течение 2 часов, плюс 150 XP и 2 банки пива.</div><div class="qbot"><div class="qbar"><i style="width:${Math.round(doneN/3*100)}%"></i></div><span class="qn">${doneN}/3</span>${user.dailyAll?'<span class="chip gr">Получено</span>':(all?'<button class="btn sm" onclick="claimAll()">Забрать</button>':'')}</div></div>
     <button class="btn2 full" onclick="closeSheet()">Закрыть</button>`);
 }
-function claimGift(a){ if(user.dailyGift) return; user.dailyGift=true; user.kol=r2(user.kol+a); user.beer++; addTx('in','Ежедневный паёк',a); hap('heavy'); markDirty(); saveNow(); refreshUI(); openQuests(); }
+function dayShift(n){ const d=new Date(); d.setDate(d.getDate()+n); return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+function giftInfo(){ const base=35+getRankIdx()*25, st=user.lastGift===todayStr()?(user.loginStreak||1):(user.lastGift===dayShift(-1)?(user.loginStreak||0)+1:1), d=(st-1)%7+1, m=[1,1.2,1.4,1.6,1.8,2,3][d-1]; return {st,d,kol:Math.round(base*m),beer:d===7?3:1,boost:d===7?60:0}; }
+function claimGift(){
+  if(user.dailyGift) return; const g=giftInfo(); user.dailyGift=true; user.loginStreak=g.st; user.lastGift=todayStr();
+  user.kol=r2(user.kol+g.kol); user.beer+=g.beer; if(g.boost) user.vaultBoostUntil=Math.max(Date.now(),user.vaultBoostUntil||0)+g.boost*60000;
+  addTx('in','Ежедневный паёк · день '+g.d,g.kol); hap('heavy'); markDirty(); saveNow(); refreshUI(); openQuests();
+}
 function claimQuest(id,rw){ if(user.qClaimed[id]) return; user.qClaimed[id]=true; user.kol=r2(user.kol+rw); gainXp(35); addTx('in','Награда за задание',rw); hap('heavy'); markDirty(); saveNow(); refreshUI(); openQuests(); }
 function claimAll(){ if(user.dailyAll) return; user.dailyAll=true; user.vaultBoostUntil=Math.max(Date.now(),user.vaultBoostUntil||0)+7200000; gainXp(150); user.beer+=2; hap('heavy'); markDirty(); saveNow(); refreshUI(); openQuests(); }
 
@@ -1858,7 +1877,8 @@ async function buyProp(locId){
     if(user.curLoc!==locId){ popup('Ты далеко от точки','Покупка возможна только при личном присутствии.'); return; }
     const path=`${N_PROPS}/${locId}`, snap=await dbGetE(path), cur=snap.value||null;
     if(cur&&cur.ownerKey===user.key) return;
-    price=cur&&cur.price?Math.round(cur.price*1.25):loc.basePrice;
+    if(cur&&cur.ownerKey&&cur.ts&&Date.now()-cur.ts<PROTECT_MS){ popup('Точка под охраной',`Новую точку нельзя перекупить 30 минут. Осталось ${Math.ceil((PROTECT_MS-(Date.now()-cur.ts))/60000)} мин.`); return; }
+    price=cur&&cur.price?Math.min(Math.round(cur.price*1.25),loc.basePrice*4):loc.basePrice;
     if(user.kol<price){ popup('Недостаточно KOL',`Для сделки нужно ${price} KOL.`); return; }
     txId=newId('sale'); user.kol=r2(user.kol-price); addTx('out',`Покупка «${loc.name}»`,price); const txRef=user.tx[0];
     if(!(await saveNow(true))){ user.kol=r2(user.kol+price); user.tx=user.tx.filter(x=>x!==txRef); refreshUI(); popup('Покупка не подтверждена','Сервер не сохранил списание, точка не изменена.'); return; }
@@ -1956,11 +1976,13 @@ function spinSlots(){
       clearInterval(tk); isSpinning=false; btn.disabled=false; if(mult>=1.2){ cells.forEach(cc=>{ cc.classList.add('win'); setTimeout(()=>cc.classList.remove('win'),1400); }); }
       const win=r2(fixedBet*mult); if(mult>0){ user.kol=r2(user.kol+win); if(mult>=1.2) addTx('in',`Слоты x${mult}`,win); hap('heavy'); }
       const lost=fixedBet-win; if(lost>0) user.cashback=r2(user.cashback+lost*.10);
-      user.beer+=beer; if(xp) gainXp(xp); if(boost) user.vaultBoostUntil=Math.max(Date.now(),user.vaultBoostUntil||0)+boost*60000;
+      user.beer+=beer; if(xp) casXp(xp); if(boost) user.vaultBoostUntil=Math.max(Date.now(),user.vaultBoostUntil||0)+boost*60000;
       msg.style.color=col; msg.textContent=txt; markDirty(); saveNow(); refreshUI(); casRefresh();
     }
   },380+i*230));
 }
+const CAS_XP_CAP=80; /* XP из казино в день */
+function casXp(n){ const g=Math.max(0,Math.min(n,CAS_XP_CAP-(user.dCasXp||0))); if(g>0){ user.dCasXp=(user.dCasXp||0)+g; gainXp(g); } return g; }
 const MINE_MAX_MULT=500; // потолок множителя (раньше был x8 — из-за него выплата переставала расти)
 function mineMult(safe,mines){
   safe=Math.min(safe,25-mines); if(safe<=0) return 1;
@@ -2021,12 +2043,12 @@ function boomMines(i){
 function cashMines(auto){
   const r=mineRound; if(!r||!r.opened.length) return; mineRound=null;
   const st=r.opened.length, mult=mineMult(st,r.mines.length), win=r2(r.bet*mult);
-  user.kol=r2(user.kol+win); gainXp(st*4); addTx('in',`Минёр x${mult.toFixed(2)}`,win); lastMines=r.mines.slice();
+  const gx=casXp(st*4); user.kol=r2(user.kol+win); addTx('in',`Минёр x${mult.toFixed(2)}`,win); lastMines=r.mines.slice();
   markDirty(); saveNow(true);
   r.mines.forEach((m,k)=>mineSet(m,'ghost','💀',100+k*60));
   hap('heavy'); hap('ok'); flashFx('rgba(155,229,100,.35)');
   { const b=$('mine-out').getBoundingClientRect(); floatText('+'+win.toFixed(2),b.left+b.width/2,b.top); }
-  $('mine-msg').textContent=`${auto===true?'Поле очищено! ':''}Забрано +${win.toFixed(2)} KOL и +${st*4} XP`;
+  $('mine-msg').textContent=`${auto===true?'Поле очищено! ':''}Забрано +${win.toFixed(2)} KOL${gx?` и +${gx} XP`:''}`;
   mineUI(); refreshUI(); casRefresh();
 }
 
@@ -2145,6 +2167,7 @@ function renderProfile(){
     <div class="card rankc" onclick="openRank()"><div class="ibox"><img src="${pixelIcon(idx)}" alt=""></div><div style="flex:1;min-width:0"><div class="pt">${esc(r.n)}</div><div class="sub">Уровень ${idx+1} · ${user.xp.toLocaleString('ru-RU')} XP</div><div class="dots" style="--p:${pct}%;--dc:${col}"><i></i></div></div><span class="mu">${chev}</span></div>
     <div class="card"><div class="stats3"><div><b>${user.rides}</b><small>Рейсов</small></div><div><b>${(user.clicks||0).toLocaleString('ru-RU')}</b><small>Тапов</small></div><div><b>${countProps(user.key)}</b><small>Точек</small></div></div></div>
     <div class="group">
+      <div class="lrow" onclick="openGuide()"><span>Как играть</span>${chev}</div>
       <div class="lrow" onclick="openBank('send')"><span>Банк КолхозPay</span>${chev}</div>
       <div class="lrow" onclick="openQuests()"><span>Задания дня</span>${chev}</div>
       <div class="lrow" onclick="shareInvite()"><span>Позвать друга · +50 KOL обоим</span>${chev}</div>
@@ -2222,7 +2245,7 @@ async function doPrestige(){
 }
 
 /* ================= БАНК ================= */
-let bankBusy=false;
+let bankBusy=false; const BANK_INT_CAP=5000;
 async function openBank(tab='send'){
   hap('light'); const idx=getRankIdx(), can=idx>=1;
   const tx=user.tx.slice(0,25).map(t=>{ const i=t.type==='in'; return `<div class="tx"><div style="min-width:0"><div style="font-size:14px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(t.title)}</div><div class="sub">${esc(t.time||'')}</div></div><div class="mono" style="font-weight:800;color:${i?'var(--ok)':'var(--bad)'}">${i?'+':'−'}${Number(t.amount).toFixed(2)}</div></div>`; }).join('')||'<div class="sub" style="text-align:center;padding:14px">Операций пока нет</div>';
@@ -2231,7 +2254,7 @@ async function openBank(tab='send'){
     <div class="seg"><div class="${tab==='send'?'on':''}" onclick="openBank('send')">Перевод</div><div class="${tab==='save'?'on':''}" onclick="openBank('save')">Вклад</div><div class="${tab==='hist'?'on':''}" onclick="openBank('hist')">История</div></div>
     ${tab==='send'?`<select id="pay-to" class="input" ${can?'':'disabled'}><option value="">Загрузка игроков…</option></select><input id="pay-sum" type="number" class="input" placeholder="Сумма от 5 KOL" ${can?'':'disabled'}>
       ${can?'':'<div class="sub bad" style="text-align:center">Переводы открываются со 2 уровня</div>'}<button class="btn" id="pay-go" ${can?'':'disabled'} onclick="sendTransfer()">Отправить</button>`:''}
-    ${tab==='save'?`<div class="sub" style="text-align:center">+1% в сутки · с процентами снять можно через 6 ч</div>
+    ${tab==='save'?`<div class="sub" style="text-align:center">+1% в сутки с суммы до 5 000 KOL · снять можно через 6 ч после последнего вклада</div>
       <input id="bank-sum" type="number" class="input" placeholder="Сумма, KOL"><div class="grid2"><button class="btn" onclick="bankAct('dep')">Положить</button><button class="btn2" onclick="bankAct('wd')">Снять с %</button></div>`:''}
     ${tab==='hist'?`<div class="col" style="max-height:260px;overflow-y:auto;gap:6px">${tx}</div>`:''}
     <button class="btn2 full" onclick="closeSheet()">Закрыть</button>`);
@@ -2255,9 +2278,9 @@ async function sendTransfer(){
 }
 async function bankAct(a){
   if(bankBusy) return; const sum=r2(parseFloat($('bank-sum').value)||0); if(sum<1){ toast('Минимум 1 KOL'); return; }
-  if(a==='dep'){ if(user.kol<sum){ toast('Не хватает KOL'); return; } if(!user.bank) user.bankAt=Date.now(); user.kol=r2(user.kol-sum); user.bank=r2(user.bank+sum); addTx('out','Пополнение вклада',sum); }
+  if(a==='dep'){ if(user.kol<sum){ toast('Не хватает KOL'); return; } if(user.bank>0&&user.bankAt){ const e0=Math.min(7*86400000,Date.now()-user.bankAt); user.bank=r2(user.bank+Math.min(user.bank,BANK_INT_CAP)*.01*e0/86400000); } user.bankAt=Date.now(); user.kol=r2(user.kol-sum); user.bank=r2(user.bank+sum); addTx('out','Пополнение вклада',sum); }
   else { if(user.bank<sum){ toast('На вкладе меньше'); return; } if(!user.bankAt||Date.now()-user.bankAt<21600000){ popup('Вклад ещё копит проценты','Снять с процентами можно через 6 часов после вклада.'); return; }
-    const el=Math.min(7*86400000,Date.now()-user.bankAt), it=r2(sum*.01*el/86400000); user.bank=r2(user.bank-sum); user.kol=r2(user.kol+sum+it); if(!user.bank) user.bankAt=0; addTx('in',`Снятие со вклада (+${it})`,sum+it); }
+    const el=Math.min(7*86400000,Date.now()-user.bankAt), it=r2(Math.min(sum,BANK_INT_CAP)*.01*el/86400000); user.bank=r2(user.bank-sum); user.kol=r2(user.kol+sum+it); if(!user.bank) user.bankAt=0; addTx('in',`Снятие со вклада (+${it})`,sum+it); }
   bankBusy=true; markDirty(); await saveNow(true); bankBusy=false; refreshUI(); openBank('save');
 }
 
@@ -2290,6 +2313,18 @@ function patchNote(force){
     </div><button class="btn" onclick="localStorage.setItem('kg3_note_h','1');closeSheet()">Поехали</button>`);
 }
 let subOpenedAt=0;
+const GUIDE=[
+  ['🐗','Тапай кабана','На вкладке «Ферма» каждый тап приносит KOL. Бодрость тратится на тапы и сама восстанавливается.'],
+  ['🌾','Касса работает за тебя','Корм, бригада и твои точки копят KOL, пока тебя нет. Заходи и жми «Забрать». Улучшение «Амбар» увеличивает время накопления.'],
+  ['📦','Доставки и такси','На карте бери заказы. Чистая доставка без аварий платит больше и растит стрик.'],
+  ['📍','Скупай точки','Купить точку можно, когда ты на ней. Она приносит доход, а с чужих поездок сюда тебе идёт 10%. Новую точку 30 минут нельзя перекупить.'],
+  ['🎯','Задания и серия дней','Каждый день 3 задания и паёк. Заходи подряд: награда растёт, на 7-й день она тройная.'],
+  ['⭐','Ранги и сезон','XP повышает ранг. Дойди до «Наш свин» до конца сезона и получи престиж ★: +15% к доходу навсегда.']
+];
+function openGuide(){
+  if(user&&!user.guideSeen){ user.guideSeen=true; markDirty(); saveNow(); }
+  openSheet(`<div class="h2">Как играть</div>${GUIDE.map(g=>`<div class="qrow"><div class="qtop"><div class="qtt">${g[0]} ${esc(g[1])}</div></div><div class="qdd">${esc(g[2])}</div></div>`).join('')}<button class="btn" onclick="closeSheet()">Понятно</button>`);
+}
 function subPopup(force){
   if(!user) return;
   if(!force){ if(user.subBonus) return; const t=+localStorage.getItem('kg_sub_t')||0; if(Date.now()-t<864e5) return; localStorage.setItem('kg_sub_t',String(Date.now())); }
@@ -2339,14 +2374,14 @@ let loopsOn=false, lastTick=Date.now();
 function enterGame(){
   $('onboard').classList.remove('on'); $('fatal').classList.remove('on');
   rollJob(); syncTaxi(); resizeMap(); focusLoc(curLocObj(),1.05,true); refreshUI(); renderCatchHome(); renderMono();
-  claimInbox(); fetchBoard(); setTimeout(()=>subPopup(false),700);
+  claimInbox(); fetchBoard(); setTimeout(()=>{ if(!user.guideSeen) openGuide(); else subPopup(false); },700);
   if(!loopsOn){ loopsOn=true; startLoops(); }
 }
 function startLoops(){
   lastTick=Date.now();
   setInterval(()=>{ if(!user||curTab!=='map'||document.hidden||isRiding||dgActive) return; if($('modal').classList.contains('on')) return; drawMap(); },70);
   setInterval(()=>{
-    if(!user) return; const now=Date.now(), dt=Math.min(7200,(now-lastTick)/1000); lastTick=now;
+    if(!user) return; const now=Date.now(), dt=Math.min(vaultHrs()*3600,(now-lastTick)/1000); lastTick=now;
     if(energy<MAX_ENERGY) energy=Math.min(MAX_ENERGY,energy+(3+eliteRegen())*dt);
     const rate=getPassiveRate(), cap=getVaultCap(); if(rate>0&&user.vaultKol<cap) user.vaultKol=Math.min(cap,r2(user.vaultKol+rate*dt));
     if(document.hidden) return;
